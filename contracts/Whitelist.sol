@@ -14,7 +14,7 @@ contract Whitelist
     using Math for uint256;
 
     // Mapping of addresses whitelisted
-    mapping(address => bool) private whitelist;
+    mapping(address => bool) internal whitelist;
 
     // Owner address.
     address private _owner;
@@ -62,7 +62,7 @@ contract Whitelist
     *
     * Control function to make sure that only an owner or an admin can call a particular function.
     */
-    function isAdmin() private view returns(bool)
+    function isAdmin() internal view returns(bool)
     {
         return ((msg.sender == _owner) || (moderators[msg.sender] == true));
     }
