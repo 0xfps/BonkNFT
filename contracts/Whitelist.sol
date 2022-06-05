@@ -173,6 +173,8 @@ contract Whitelist
     */
     function add(address _address) private
     {
+        // Require that the address is currently false
+        require(whitelist[_address] == false, "Address is already in whitelist.");
         // Set the address to true on the whitelist.
         whitelist[_address] = true;
         // Increment the whitelist count.
@@ -195,6 +197,8 @@ contract Whitelist
     */
     function remove(address _address) private
     {
+        // Require that the address is currently true
+        require(whitelist[_address] == true, "Address is already removed from whitelist.");
         // Set the address to false on the whitelist.
         whitelist[_address] = false;
         // Decrement the whitelist count.

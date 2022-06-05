@@ -32,7 +32,7 @@ library Math
     function decrement(uint256 a) internal pure returns(uint256)
     {
         // Ensure the addition does not overflow.
-        require((a - 1) < type(uint256).min);
+        require((a - 1) > type(uint256).min);
         // Return the summation.
         return(a - 1);
     }
