@@ -69,4 +69,21 @@ contract Bonk is ERC721, Whitelist
             }
         }
     }
+
+
+
+    /*
+    * @dev
+    *  
+    * Mint once to the owner.
+    */
+    function newMint() public
+    {
+        // Ensure that the person calling the function is an admin or a moderator.
+        require(isAdmin(), "Not owner or moderator");
+        // Mint to the address.
+        _safeMint(_owner, token_id, "");
+        // Increment the token id.
+        token_id = token_id.increment();
+    }
 }
