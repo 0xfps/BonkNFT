@@ -17,7 +17,7 @@ contract Whitelist
     mapping(address => bool) internal whitelist;
 
     // Owner address.
-    address private _owner;
+    address internal _owner;
 
     // Administrators or Moderator mapping.
     mapping(address => bool) private moderators;
