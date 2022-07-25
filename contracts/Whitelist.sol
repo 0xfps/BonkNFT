@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.0;
+
 import "../libraries/Math.sol";
 
 /*
@@ -7,27 +8,17 @@ import "../libraries/Math.sol";
 * @author: Anthony (fps) https://github.com/fps8k .
 * @dev: 
 */
-
-contract Whitelist
-{
+contract Whitelist {
     // Use the Math for uint256.
     using Math for uint256;
-
     // Mapping of addresses whitelisted
     mapping(address => bool) internal whitelist;
-
     // Owner address.
     address internal _owner;
-
     // Administrators or Moderator mapping.
     mapping(address => bool) private moderators;
-
     // Keep count of whitelist addresses.
     uint256 private whitelist_count;
-
-
-
-    // ======== E V E N T S ==============
 
     // Emitted when a new owner is set.
     event NewOwner(address indexed old_owner, address indexed new_owner);
@@ -38,13 +29,8 @@ contract Whitelist
     // Emitted when a new address is removed from the whitelist.
     event RemoveAddressFromWhitelist(address indexed moderator, address indexed user);
 
-    // ======== E V E N T S ==============
-
-
-
     // Constructor to set the owner address.
-    constructor()
-    {
+    constructor() {
         // Set the owner address.
         _owner = msg.sender;
         // Add owner to the moderators.
@@ -55,19 +41,14 @@ contract Whitelist
         emit NewModerator(address(0), msg.sender);
     }
 
-
-
     /*
     * @dev
     *
     * Control function to make sure that only an owner or an admin can call a particular function.
     */
-    function isAdmin() internal view returns(bool)
-    {
+    function isAdmin() internal view returns(bool) {
         return ((msg.sender == _owner) || (moderators[msg.sender] == true));
     }
-
-
 
     /*
     * @dev
@@ -79,16 +60,13 @@ contract Whitelist
     *
     * address _address => address to add to whitelist.
     */
-    function addToWhitelist(address _address) public
-    {
+    function addToWhitelist(address _address) public {
         // Ensure that the person calling the function is an admin or a moderator.
         require(isAdmin(), "Not owner or moderator");
         // Add address.
         add(_address);
     }
-
-
-
+    
     /*
     * @dev
     *
@@ -99,16 +77,13 @@ contract Whitelist
     *
     * address _address => address to remove from whitelist.
     */
-    function removeFromWhitelist(address _address) public
-    {
+    function removeFromWhitelist(address _address) public {
         // Ensure that the person calling the function is an admin or a moderator.
         require(isAdmin(), "Not owner or moderator");
         // Remove address.
         remove(_address);
     }
-
-
-
+    
     /*
     * @dev
     *
@@ -119,21 +94,18 @@ contract Whitelist
     *
     * address[] _address => array of addresses to add to whitelist.
     */
-    function addArrayToWhitelist(address[] memory _address) public
-    {
+    function addArrayToWhitelist(address[] memory _address) public {
         // Ensure that the person calling the function is an admin or a moderator.
         require(isAdmin(), "Not owner or moderator");
         // Get length of array.
         uint256 _l = _address.length;
+        
         // Loop through each address and add them to the whitelist.
-        for (uint256 i = 0; i < _l; i++)
-        {
+        for (uint256 i = 0; i < _l; i++) {
             // Add address at index to whitelist.
             add(_address[i]);
         }
     }
-
-
 
     /*
     * @dev
@@ -145,21 +117,18 @@ contract Whitelist
     *
     * address[] _address => array of addresses to remove from whitelist.
     */
-    function removeArrayFromWhitelist(address[] memory _address) public
-    {
+    function removeArrayFromWhitelist(address[] memory _address) public {
         // Ensure that the person calling the function is an admin or a moderator.
         require(isAdmin(), "Not owner or moderator");
         // Get length of array.
         uint256 _l = _address.length;
+        
         // Loop through each address and add them to the whitelist.
-        for (uint256 i = 0; i < _l; i++)
-        {
+        for (uint256 i = 0; i < _l; i++) {
             // Remove address at index from whitelist.
             remove(_address[i]);
         }
     }
-
-
 
     /*
     * @dev
@@ -171,8 +140,7 @@ contract Whitelist
     *
     * address _address => address to add to whitelist.
     */
-    function add(address _address) private
-    {
+    function add(address _address) private {
         // Require that the address is currently false
         require(whitelist[_address] == false, "Address is already in whitelist.");
         // Set the address to true on the whitelist.
@@ -182,9 +150,7 @@ contract Whitelist
         // Emit the NewAddressToWhitelist function.
         emit NewAddressToWhitelist(msg.sender, _address);
     }
-
-
-
+    
     /*
     * @dev
     *
@@ -195,8 +161,7 @@ contract Whitelist
     *
     * address _address => address to remove from whitelist.
     */
-    function remove(address _address) private
-    {
+    function remove(address _address) private {
         // Require that the address is currently true
         require(whitelist[_address] == true, "Address is already removed from whitelist.");
         // Set the address to false on the whitelist.
