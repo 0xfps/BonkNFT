@@ -5,7 +5,7 @@ import "../libraries/Math.sol";
 
 /*
 * @title: BonkNFT Whitelist.
-* @author: Anthony (fps) https://github.com/fps8k .
+* @author: Anthony (fps) https://github.com/0xfps.
 * @dev: 
 */
 contract Whitelist {
