@@ -43,7 +43,6 @@ contract Whitelist {
 
     /*
     * @dev
-    *
     * Control function to make sure that only an owner or an admin can call a particular function.
     */
     function isAdmin() internal view returns(bool) {
@@ -52,12 +51,9 @@ contract Whitelist {
 
     /*
     * @dev
-    *
     * Function adds a user to the whitelist.
     *
-    *
     * @param
-    *
     * address _address => address to add to whitelist.
     */
     function addToWhitelist(address _address) public {
@@ -69,12 +65,9 @@ contract Whitelist {
     
     /*
     * @dev
-    *
     * Function removes a user from the whitelist.
     *
-    *
     * @param
-    *
     * address _address => address to remove from whitelist.
     */
     function removeFromWhitelist(address _address) public {
@@ -86,12 +79,9 @@ contract Whitelist {
     
     /*
     * @dev
-    *
     * Function adds an array of users to the whitelist.
     *
-    *
     * @param
-    *
     * address[] _address => array of addresses to add to whitelist.
     */
     function addArrayToWhitelist(address[] memory _address) public {
@@ -109,12 +99,9 @@ contract Whitelist {
 
     /*
     * @dev
-    *
     * Function adds an array of users to the whitelist.
     *
-    *
     * @param
-    *
     * address[] _address => array of addresses to remove from whitelist.
     */
     function removeArrayFromWhitelist(address[] memory _address) public {
@@ -132,12 +119,9 @@ contract Whitelist {
 
     /*
     * @dev
-    *
     * Does the actual addition to whitelist function.
     *
-    *
     * @param
-    *
     * address _address => address to add to whitelist.
     */
     function add(address _address) private {
@@ -153,12 +137,9 @@ contract Whitelist {
     
     /*
     * @dev
-    *
     * Does the actual removal from whitelist function.
     *
-    *
     * @param
-    *
     * address _address => address to remove from whitelist.
     */
     function remove(address _address) private {
