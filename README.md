@@ -1,5 +1,5 @@
 # BonkNFT
-Bonk NFT Project
+Bonk NFT Project.
 
 A contract that plays around with ERC721 specification, and mints NFT Tokens free to a particular group of addresses added to the whitelist, while skipping those that aren't.
 
